@@ -24,6 +24,14 @@ async function stripe(path, params, key) {
   return data;
 }
 
+// Stripe's error reason, with any key fragments masked, so problems can be diagnosed.
+const describe = (e) =>
+  [e?.stripe?.type, e?.stripe?.code, e?.stripe?.param && `param=${e.stripe.param}`, e?.message]
+    .filter(Boolean)
+    .join(" | ")
+    .replace(/\b(sk|rk|pk)_(live|test)_[A-Za-z0-9_.*]+/g, "$1_$2_***")
+    .slice(0, 400);
+
 const clean = (v, max = 200) => String(v ?? "").replace(/[\u0000-\u001f]/g, " ").trim().slice(0, max);
 
 export default async (req) => {
@@ -73,7 +81,6 @@ export default async (req) => {
     // 2. Create a Checkout page in "setup" mode: saves the payment method, charges nothing.
     const base = {
       mode: "setup",
-      currency: "usd",
       customer: customer.id,
       success_url: `${origin}/?card=saved#signup`,
       cancel_url: `${origin}/?card=cancel#signup`,
@@ -93,14 +100,16 @@ export default async (req) => {
       );
     } catch (e) {
       // If bank payments aren't enabled on the Stripe account yet, fall back to card only.
+      console.error("save-card: card+bank attempt failed:", describe(e));
       session = await stripe("/checkout/sessions", { ...base, "payment_method_types[0]": "card" }, key);
     }
 
     return Response.json({ url: session.url });
   } catch (e) {
-    console.error("save-card error:", e.message, e.stripe?.type || "");
+    const detail = describe(e);
+    console.error("save-card error:", detail);
     return Response.json(
-      { error: "We couldn't open the secure card page right now. Please call or text (404) 475-9765." },
+      { error: "We couldn't open the secure card page right now. Please call or text (404) 475-9765.", detail },
       { status: 502 }
     );
   }

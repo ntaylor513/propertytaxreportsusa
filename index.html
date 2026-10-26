@@ -632,10 +632,11 @@ $("#cardBtn").addEventListener("click", async () => {
       })
     });
     const j = await r.json().catch(() => ({}));
-    if (!r.ok || !j.url) throw new Error(j.error || "Something went wrong.");
+    if (!r.ok || !j.url) { const er = new Error(j.error || "Something went wrong."); er.detail = j.detail; throw er; }
     window.location.href = j.url;
   } catch (x) {
-    err.textContent = (x.message && x.message.length < 160 ? x.message : "We couldn't open the secure page.") + " You can also call or text (404) 475-9765.";
+    err.textContent = (x.message && x.message.length < 160 ? x.message : "We couldn't open the secure page. You can also call or text (404) 475-9765.");
+    if (x.detail) { const s = document.createElement("small"); s.style.cssText = "display:block;color:#777;margin-top:6px;font-size:11px;word-break:break-word"; s.textContent = "Error details: " + x.detail; err.appendChild(s); }
     err.classList.remove("hidden");
     btn.disabled = false; btn.innerHTML = "&#128274; Save My Card Securely";
   }
