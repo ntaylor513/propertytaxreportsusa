@@ -49,6 +49,21 @@ nav.main a:hover{background:var(--bg)}
 nav.main a.cta{background:var(--gold);color:#fff}
 .menu-btn{display:none;background:none;border:0;font-size:26px;color:var(--navy);cursor:pointer}
 
+/* payment choice */
+.pay-choice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.pay-choice .pc{cursor:pointer;position:relative}
+.pay-choice .pc input{position:absolute;opacity:0}
+.pay-choice .pc span{display:block;height:100%;border:2px solid #c9d0db;border-radius:12px;padding:12px 14px}
+.pay-choice .pc b{display:block;color:var(--navy);font-size:15px}
+.pay-choice .pc small{display:block;color:var(--muted);font-size:12.5px;line-height:1.4;margin-top:2px}
+.pay-choice .pc input:checked+span{border-color:var(--gold);background:var(--gold-soft)}
+.pay-choice .pc input:focus-visible+span{outline:3px solid rgba(168,132,60,.4)}
+@media (max-width:560px){.pay-choice{grid-template-columns:1fr}}
+
+/* header banner */
+.hdr-banner{display:block;background:var(--navy);line-height:0}
+.hdr-banner img{display:block;width:100%;height:auto;max-width:2161px;margin:0 auto}
+
 /* hero */
 .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:72px 0 64px}
 .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
@@ -225,12 +240,20 @@ nav.main a.share-link,nav.main button.share-link{display:inline-flex;align-items
   </nav>
 </div></header>
 
+<!-- HEADER BANNER (same as website) -->
+<a class="hdr-banner" href="#pricing" aria-label="Lower Taxes. More Savings. Less Stress. Compare our pricing plans">
+  <picture>
+    <source media="(max-width: 700px)" srcset="img/header-mobile.jpg">
+    <img src="img/header-desktop.jpg" width="2161" height="728" alt="Property Tax Reports USA: Lower Taxes. More Savings. Less Stress. Expert assessment reviews, flexible payment options, and year-round property tax protection. Compare our pricing plans.">
+  </picture>
+</a>
+
 <!-- HERO -->
 <section class="hero" id="home"><div class="wrap">
   <div>
     <p class="eyebrow" style="color:var(--gold-2)">Property Tax Appeals &middot; Licensed Appraisers</p>
-    <h1>No Savings, <em>No Fee.</em><br>Lower Property Taxes With $0 Upfront.</h1>
-    <p class="lead">We appeal your assessment and handle everything. You only pay 30% of your first-year savings, and only after the county makes your lower value official.</p>
+    <h1>We Appeal Your Assessment. <em>You Choose How to Pay.</em></h1>
+    <p class="lead">We appeal your assessment and handle everything. Pay only if we win, or join our Protection Plan for one low monthly price and keep every dollar you save.</p>
     <div class="actions">
       <a class="btn btn-gold" href="#signup">Start My Free Appeal</a>
       <a class="btn btn-ghost" href="tel:+14044759765">Call (404) 475-9765</a>
@@ -242,43 +265,247 @@ nav.main a.share-link,nav.main button.share-link{display:inline-flex;align-items
     </div>
   </div>
   <div class="price-badge" id="pricing-card">
-    <div class="big">30%<small>of your first-year tax savings</small></div><div style="height:6px"></div>
-    <div class="promise"><i>&#10003;</i><div><b>$0 upfront</b><span>No retainer, filing fee, or appraisal fee.</span></div></div>
-    <div class="promise"><i>&#10003;</i><div><b>$0 if we don't lower your value</b><span>No reduction means you owe nothing.</span></div></div>
-    <div class="promise"><i>&#10003;</i><div><b>You keep 70% in year one</b><span>And 100% of any savings after that.</span></div></div>
+    <p style="margin:0 0 4px;font:700 13px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)">Two simple ways to pay</p>
+    <div class="promise" style="margin-top:12px"><i>1</i><div><b>Pay Only If We Win: 30%</b><span>Of first-year savings. $0 upfront, $0 if we don't lower your value.</span></div></div>
+    <div class="promise"><i>2</i><div><b>Protection Plan: from $15/month</b><span>Every appeal, every year. Keep 100% of your savings.</span></div></div>
+    <a class="btn btn-navy" href="#pricing" style="width:100%;margin-top:14px">Compare Plans</a>
   </div>
 </div></section>
 
-<!-- SERVICES / PRICING -->
-<section id="pricing"><div class="wrap">
-  <p class="eyebrow center">Pricing</p>
-  <h2 class="center">One Simple Fee for Every Property</h2>
-  <p class="sub center">Homes and commercial properties all use the same contingency fee. No packages to choose, no surprise charges.</p>
-  <div class="grid-4">
-    <div class="card svc"><div class="ico">&#127969;</div><h3>Free Property Review</h3><p>We check your assessment against comparable properties and tell you if it looks too high.</p><div class="fee"><span>Free</span>, always</div></div>
-    <div class="card svc"><div class="ico">&#127968;</div><h3>Residential Appeal</h3><p>Single-family homes, townhomes, and condos. Comparable sales and full appeal handling.</p><div class="fee">30% of first-year savings</div></div>
-    <div class="card svc"><div class="ico">&#127970;</div><h3>Commercial Appeal</h3><p>Office, retail, industrial, and land. Income and market value analysis by a licensed appraiser.</p><div class="fee">30% of first-year savings</div></div>
-    <div class="card svc"><div class="ico">&#127976;</div><h3>Apartments, Hotels &amp; Storage</h3><p>High-value income properties, with per-unit and per-room comparisons and hearing representation.</p><div class="fee">30% of first-year savings</div></div>
+<!-- PRICING (mirrors propertytaxreportsusa.com) -->
+<style>
+.ptr2{--navy:#0c2340;--navy2:#16345c;--gold:#a8843c;--gold2:#c9a45a;--goldsoft:#f6eedb;--green:#1e7a46;--greensoft:#e8f6ee;--bg:#f5f7fa;--card:#fff;--text:#1f2933;--muted:#5a6270;--line:#e1e5ec;
+  font-family:inherit;color:var(--text);background:var(--bg);padding:64px 18px;line-height:1.6;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;box-sizing:border-box}
+.ptr2 *,.ptr2 *::before,.ptr2 *::after{box-sizing:border-box}
+.ptr2 .w{max-width:1100px;margin:0 auto}
+.ptr2 h2,.ptr2 h3,.ptr2 h4{font-family:Poppins,Inter,sans-serif;color:var(--navy);line-height:1.2;margin:0 0 .45em}
+.ptr2 h2{font-size:clamp(28px,4vw,40px);text-align:center}
+.ptr2 h3{font-size:clamp(22px,3vw,28px);text-align:center;margin-top:64px}
+.ptr2 .eb{color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px;text-align:center;margin:0 0 8px}
+.ptr2 .sub{text-align:center;color:var(--muted);font-size:18px;max-width:680px;margin:0 auto 36px}
+.ptr2 svg{display:block}
+
+/* choose your path */
+.ptr2 .paths{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.ptr2 .path{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px;position:relative;display:flex;flex-direction:column}
+.ptr2 .path.plan{border:2px solid var(--gold)}
+.ptr2 .badge{position:absolute;top:-13px;right:22px;background:var(--gold);color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:5px 12px}
+.ptr2 .ic{width:58px;height:58px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px}
+.ptr2 .ic.n{background:#eef1f6;color:var(--navy)}
+.ptr2 .ic.g{background:var(--goldsoft);color:var(--gold)}
+.ptr2 .path .big{font-size:44px;font-weight:800;color:var(--navy);line-height:1;margin:6px 0 4px}
+.ptr2 .path .big small{font-size:16px;font-weight:600;color:var(--muted)}
+.ptr2 .path .tag{color:var(--gold);font-weight:700;margin:0 0 14px}
+.ptr2 .chk{list-style:none;margin:0 0 20px;padding:0}
+.ptr2 .chk li{position:relative;padding:6px 0 6px 30px}
+.ptr2 .chk li::before{content:"\2713";position:absolute;left:0;top:8px;width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ptr2 .chk li.x::before{content:"!";background:var(--gold)}
+.ptr2 .best{margin-top:auto;background:var(--bg);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--muted)}
+.ptr2 .best b{color:var(--navy)}
+
+/* how payments work pictorial */
+.ptr2 .flow{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;margin-top:18px}
+.ptr2 .flow h4{font-size:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ptr2 .pill{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;background:#eef1f6;color:var(--navy)}
+.ptr2 .pill.g{background:var(--goldsoft);color:#7a5f22}
+.ptr2 .steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:10px;margin-top:14px}
+.ptr2 .st{text-align:center;padding:14px 10px;border-radius:12px;background:var(--bg)}
+.ptr2 .st .n{font-size:26px;font-weight:800;color:var(--navy);line-height:1.1}
+.ptr2 .st .l{font-size:14px;color:var(--muted)}
+.ptr2 .st.ok .n{color:var(--green)}
+.ptr2 .arr{color:var(--gold);font-size:26px;font-weight:700}
+.ptr2 .months{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;margin-top:16px}
+.ptr2 .m{background:var(--navy);color:#fff;border-radius:8px;text-align:center;padding:10px 2px 8px}
+.ptr2 .m b{display:block;font-size:15px}
+.ptr2 .m span{font-size:11px;color:#cfd7e3}
+.ptr2 .keep{margin-top:14px;display:flex;align-items:center;gap:14px;background:var(--greensoft);border-radius:12px;padding:14px 16px}
+.ptr2 .keep .k{font-size:28px;font-weight:800;color:var(--green);white-space:nowrap}
+.ptr2 .keep p{margin:0;font-size:15px}
+
+/* tiers */
+.ptr2 .tiers{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.ptr2 .tier{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center;display:flex;flex-direction:column}
+.ptr2 .tier.pop{border:2px solid var(--gold)}
+.ptr2 .tier .tn{font-weight:700;color:var(--navy);font-size:17px}
+.ptr2 .tier .pr{font-size:34px;font-weight:800;color:var(--navy);line-height:1;margin:10px 0 2px}
+.ptr2 .tier .pr small{font-size:14px;font-weight:600;color:var(--muted)}
+.ptr2 .tier .yr{font-size:13px;color:var(--muted);margin-bottom:10px}
+.ptr2 .tier .fit{font-size:14px;color:var(--text);border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
+.ptr2 .note{text-align:center;color:var(--muted);font-size:14px;margin-top:14px}
+
+/* which is better bars */
+.ptr2 .cmp{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.ptr2 .cmpc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.ptr2 .cmpc h4{font-size:17px;margin-bottom:4px}
+.ptr2 .cmpc .s{color:var(--muted);font-size:14px;margin:0 0 16px}
+.ptr2 .bar{margin:10px 0}
+.ptr2 .bar .lb{display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px}
+.ptr2 .bar .lb b{color:var(--navy)}
+.ptr2 .track{height:16px;background:var(--bg);border-radius:999px;overflow:hidden}
+.ptr2 .fill{height:100%;border-radius:999px}
+.ptr2 .fill.n{background:var(--navy)}
+.ptr2 .fill.g{background:var(--gold)}
+.ptr2 .win{margin-top:12px;font-weight:700;color:var(--green);font-size:15px}
+.ptr2 .rule{margin-top:22px;background:var(--navy);color:#fff;border-radius:16px;padding:22px 26px;display:flex;gap:18px;align-items:center}
+.ptr2 .rule .k{font-size:15px;color:#cfd7e3}
+.ptr2 .rule b{color:var(--gold2)}
+
+/* terms */
+.ptr2 .terms{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ptr2 .term{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+.ptr2 .term .ic{width:46px;height:46px;flex:0 0 46px;margin:0;border-radius:12px}
+.ptr2 .term b{display:block;color:var(--navy);margin-bottom:2px}
+.ptr2 .term span{font-size:14px;color:var(--muted)}
+
+/* faq + cta */
+.ptr2 .faq{max-width:820px;margin:0 auto}
+.ptr2 details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+.ptr2 summary{cursor:pointer;font-weight:700;color:var(--navy);list-style:none;position:relative;padding-right:26px}
+.ptr2 summary::-webkit-details-marker{display:none}
+.ptr2 summary::after{content:"+";position:absolute;right:0;top:-3px;font-size:22px;color:var(--gold)}
+.ptr2 details[open] summary::after{content:"\2212"}
+.ptr2 details p{margin:8px 0 0;color:var(--muted)}
+.ptr2 .cta{text-align:center;margin-top:48px}
+.ptr2 .btn{display:inline-block;font-weight:700;font-size:17px;padding:15px 30px;border-radius:10px;text-decoration:none!important;margin:6px;transition:transform .15s}
+.ptr2 .btn:hover{transform:translateY(-2px)}
+.ptr2 .btn.gd{background:var(--gold);color:#fff!important}
+.ptr2 .btn.nv{background:var(--navy);color:#fff!important}
+.ptr2 .cta p{color:var(--muted);margin:10px 0 0}
+.ptr2 .cta a.ph{color:var(--navy);font-weight:700}
+.ptr2 .fine{text-align:center;font-size:12px;color:var(--muted);max-width:780px;margin:28px auto 0}
+
+@media (max-width:980px){.ptr2 .tiers{grid-template-columns:repeat(2,1fr)}.ptr2 .terms{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){
+  .ptr2 .paths,.ptr2 .cmp,.ptr2 .terms{grid-template-columns:1fr}
+  .ptr2 .steps{grid-template-columns:1fr}.ptr2 .arr{transform:rotate(90deg);text-align:center}
+  .ptr2 .months{grid-template-columns:repeat(6,1fr)}
+  .ptr2 .rule{flex-direction:column;text-align:center}
+}
+@media (max-width:480px){.ptr2 .tiers{grid-template-columns:1fr}}
+</style>
+
+<section class="ptr2" id="pricing">
+<div class="w">
+  <p class="eb">Pricing</p>
+  <h2>Two Simple Ways to Pay</h2>
+  <p class="sub">Pay nothing unless we lower your taxes, or join our Protection Plan for one low monthly price and keep every dollar you save.</p>
+
+  <!-- CHOOSE YOUR PATH -->
+  <div class="paths">
+    <div class="path">
+      <div class="ic n"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></div>
+      <h4 style="font-size:22px">Pay Only If We Win</h4>
+      <div class="big">30%<small> of first-year savings</small></div>
+      <p class="tag">$0 upfront. $0 if we don't lower your value.</p>
+      <ul class="chk">
+        <li>Nothing to pay to get started</li>
+        <li>You pay once, after the county makes it official</li>
+        <li>Covers one tax year</li>
+      </ul>
+      <div class="best"><b>Best if:</b> you want zero risk and expect a smaller reduction.</div>
+    </div>
+
+    <div class="path plan">
+      <span class="badge">Keep 100% of savings</span>
+      <div class="ic g"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+      <h4 style="font-size:22px">Protection Plan</h4>
+      <div class="big">$15<small> /month for homes</small></div>
+      <p class="tag">Year-round coverage. No fee on your savings.</p>
+      <ul class="chk">
+        <li>We review your assessment <b>every year</b></li>
+        <li>We file and handle every appeal, every year</li>
+        <li>You keep <b>every dollar</b> you save</li>
+        <li class="x">Monthly fee applies whether or not your value is lowered</li>
+      </ul>
+      <div class="best"><b>Best if:</b> you expect bigger savings, own commercial property, or want peace of mind year after year.</div>
+    </div>
   </div>
 
-  <h3 class="center" style="margin-top:52px">How It Works</h3>
-  <div class="grid-3 steps" style="margin-top:20px">
-    <div class="card step"><h4>Sign up free</h4><p>Review and e-sign our agreement in a few minutes. Nothing is charged to start.</p></div>
-    <div class="card step"><h4>We handle your appeal</h4><p>Our licensed appraisers build the evidence, file before your deadline, and represent you at hearings.</p></div>
-    <div class="card step"><h4>You save, then we get paid</h4><p>When the county finalizes your lower value, we invoice 30% of your first-year savings, due in 30 days.</p></div>
+  <!-- HOW PAYMENTS WORK -->
+  <h3>How Payments Work</h3>
+  <div class="flow">
+    <h4>Pay Only If We Win <span class="pill">Example: home saves $1,200</span></h4>
+    <div class="steps">
+      <div class="st"><div class="n">$0</div><div class="l">Sign up free</div></div>
+      <div class="arr">&rarr;</div>
+      <div class="st ok"><div class="n">$1,200</div><div class="l">We lower your tax bill</div></div>
+      <div class="arr">&rarr;</div>
+      <div class="st"><div class="n">$360</div><div class="l">You pay 30%, once<br>You keep $840</div></div>
+    </div>
+  </div>
+  <div class="flow">
+    <h4>Protection Plan <span class="pill g">Example: same home saves $1,200</span></h4>
+    <div class="months" aria-label="12 monthly payments of $15">
+      <div class="m"><b>$15</b><span>Jan</span></div><div class="m"><b>$15</b><span>Feb</span></div><div class="m"><b>$15</b><span>Mar</span></div><div class="m"><b>$15</b><span>Apr</span></div><div class="m"><b>$15</b><span>May</span></div><div class="m"><b>$15</b><span>Jun</span></div><div class="m"><b>$15</b><span>Jul</span></div><div class="m"><b>$15</b><span>Aug</span></div><div class="m"><b>$15</b><span>Sep</span></div><div class="m"><b>$15</b><span>Oct</span></div><div class="m"><b>$15</b><span>Nov</span></div><div class="m"><b>$15</b><span>Dec</span></div>
+    </div>
+    <div class="keep"><div class="k">$1,200</div><p><b>You keep it all.</b> 12 payments of $15 = $180 for the year, charged automatically. No invoice, no 30% fee.</p></div>
   </div>
 
-  <h3 class="center" style="margin-top:52px">See What You'd Pay</h3>
-  <div class="grid-3" style="margin-top:20px">
-    <div class="card ex"><span class="tag">Homeowner example</span><h4>Your tax bill drops by $1,200</h4>
-      <table class="math" role="presentation"><tr><td>First-year tax savings</td><td>$1,200</td></tr><tr><td>Our fee (30%)</td><td>$360</td></tr><tr class="keep"><td>You keep in year one</td><td>$840</td></tr></table></div>
-    <div class="card ex"><span class="tag">Commercial example</span><h4>Your tax bill drops by $20,000</h4>
-      <table class="math" role="presentation"><tr><td>First-year tax savings</td><td>$20,000</td></tr><tr><td>Our fee (30%)</td><td>$6,000</td></tr><tr class="keep"><td>You keep in year one</td><td>$14,000</td></tr></table></div>
-    <div class="card ex feature"><span class="tag">Georgia bonus</span><h4>Savings can last 3 years</h4>
-      <table class="math" role="presentation"><tr><td>3 years of savings ($1,200 &times; 3)</td><td>$3,600</td></tr><tr><td>Our fee (year one only)</td><td>$360</td></tr><tr class="keep"><td>You keep</td><td>$3,240</td></tr></table>
-      <p style="font-size:13px;color:var(--muted);margin:10px 0 0">In Georgia, a value lowered on appeal is generally frozen for that year and the next two. We only charge on year one.</p></div>
+  <!-- TIERS -->
+  <h3>Protection Plan Prices</h3>
+  <p class="sub">Pick the plan that fits your property. Each extra property on your account is 20% off.</p>
+  <div class="tiers">
+    <div class="tier pop"><div class="tn">Home</div><div class="pr">$15<small>/mo</small></div><div class="yr">$180 a year</div><div class="fit">Single-family homes, townhomes, condos</div></div>
+    <div class="tier"><div class="tn">Home Plus</div><div class="pr">$29<small>/mo</small></div><div class="yr">$348 a year</div><div class="fit">Homes over $750K, or 2&ndash;4 rental homes</div></div>
+    <div class="tier"><div class="tn">Commercial</div><div class="pr">$149<small>/mo</small></div><div class="yr">$1,788 a year</div><div class="fit">Commercial property under $3 million</div></div>
+    <div class="tier"><div class="tn">Commercial Pro</div><div class="pr">$299<small>/mo</small></div><div class="yr">$3,588 a year</div><div class="fit">$3&ndash;10 million, incl. apartments, hotels, storage</div></div>
+    <div class="tier"><div class="tn">Portfolio</div><div class="pr" style="font-size:26px">Custom</div><div class="yr">Call for a quote</div><div class="fit">Over $10 million, or 5+ properties</div></div>
   </div>
-</div></section>
+  <p class="note">Prefer to pay yearly? Get 2 months free (Home: $150 a year).</p>
+
+  <!-- WHICH IS BETTER -->
+  <h3>Which Option Is Better for You?</h3>
+  <p class="sub">It depends on how much you save. Here's what a homeowner would pay in one year.</p>
+  <div class="cmp">
+    <div class="cmpc">
+      <h4>If you save $1,200</h4>
+      <p class="s">A bigger reduction</p>
+      <div class="bar"><div class="lb"><span>Pay Only If We Win</span><b>$360</b></div><div class="track"><div class="fill n" style="width:100%"></div></div></div>
+      <div class="bar"><div class="lb"><span>Protection Plan</span><b>$180</b></div><div class="track"><div class="fill g" style="width:50%"></div></div></div>
+      <div class="win">&#10003; Protection Plan saves you $180 more</div>
+    </div>
+    <div class="cmpc">
+      <h4>If you save $400</h4>
+      <p class="s">A smaller reduction</p>
+      <div class="bar"><div class="lb"><span>Pay Only If We Win</span><b>$120</b></div><div class="track"><div class="fill n" style="width:33%"></div></div></div>
+      <div class="bar"><div class="lb"><span>Protection Plan</span><b>$180</b></div><div class="track"><div class="fill g" style="width:50%"></div></div></div>
+      <div class="win">&#10003; Pay Only If We Win saves you $60 more</div>
+    </div>
+  </div>
+  <div class="rule">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#c9a45a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg>
+    <div><b>Simple rule:</b> the Protection Plan usually costs less once your yearly savings are above about <b>$600</b> for a home, <b>$6,000</b> for Commercial, or <b>$12,000</b> for Commercial Pro.<div class="k">Not sure? Call us. We'll look at your property for free and recommend the cheaper option.</div></div>
+  </div>
+
+  <!-- TERMS -->
+  <h3>Protection Plan Terms, Made Simple</h3>
+  <div class="terms">
+    <div class="term"><div class="ic g"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><div><b>12-month first year</b><span>Your first year is a commitment. After that, it's month to month.</span></div></div>
+    <div class="term"><div class="ic g"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div><div><b>Cancel any time after year one</b><span>Just give us 30 days' notice.</span></div></div>
+    <div class="term"><div class="ic g"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><b>Join 21 days before your deadline</b><span>So we have time to file that year's appeal for you.</span></div></div>
+    <div class="term"><div class="ic g"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div><b>Automatic monthly billing</b><span>Charged to your saved card or bank account. A receipt every month.</span></div></div>
+    <div class="term"><div class="ic g"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg></div><div><b>Switch any year</b><span>Move between the two options for the next tax year.</span></div></div>
+    <div class="term"><div class="ic g"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><div><b>Leaving early after we file</b><span>You pay the lower of the remaining months or 30% of that year's savings.</span></div></div>
+  </div>
+
+  <!-- FAQ -->
+  <h3>Common Questions</h3>
+  <div class="faq">
+    <details><summary>What do I get with the Protection Plan?</summary><p>We review your assessment notice every year, file an appeal whenever your value looks too high, prepare the evidence, represent you at hearings, check your homestead and exemptions, and track every deadline. You keep 100% of your savings.</p></details>
+    <details><summary>What if my value isn't lowered?</summary><p>With Pay Only If We Win, you owe nothing. With the Protection Plan, your monthly fee still applies, because it pays for our year-round service, not a specific result.</p></details>
+    <details><summary>Is the Protection Plan insurance?</summary><p>No. It's a service membership. We provide appeal services every year; we don't pay your taxes or guarantee a lower bill.</p></details>
+    <details><summary>What about Georgia's 3-year freeze?</summary><p>When we win in Georgia, your value is generally frozen for that year and the next two. Plan members keep paying during the freeze, and we keep watching your assessment, so you're covered automatically when the freeze ends.</p></details>
+    <details><summary>What's not included?</summary><p>Superior court appeals, binding arbitration, and full narrative appraisals for court are quoted separately. We'll always tell you the cost before any extra work.</p></details>
+  </div>
+
+  <div class="cta">
+    <a class="btn gd" href="#signup" data-choose="contingency">Start Free: Pay Only If We Win</a>
+    <a class="btn nv" href="#signup" data-choose="plan">Choose the Protection Plan</a>
+    <p>Questions? Call or text <a class="ph" href="tel:+14044759765">(404) 475-9765</a> or email <a class="ph" href="mailto:info@property-taxes.us">info@property-taxes.us</a></p>
+  </div>
+  <p class="fine">Examples are for illustration only. Savings depend on your property's value reduction and local tax rate. Results are not guaranteed. Full terms are in our Property Tax Appeal Services Agreement and Protection Plan Addendum. The Protection Plan is a service membership, not insurance.</p>
+</div>
+</section>
 
 <!-- CALCULATOR -->
 <section id="calculator" style="background:#fff"><div class="wrap">
@@ -305,6 +532,9 @@ nav.main a.share-link,nav.main button.share-link{display:inline-flex;align-items
       <div class="res-row"><span>First-year tax savings</span><b id="rSave">$480</b></div>
       <div class="res-row"><span>Our fee (30%)</span><b id="rFee">$144</b></div>
       <div class="res-row res-keep"><span>You keep in year one</span><b id="rKeep">$336</b></div>
+      <div class="res-row"><span>Or with the Protection Plan (<span id="rPlanName">Home</span>)</span><b id="rPlan">$180/yr</b></div>
+      <div class="res-row"><span>You'd keep with the plan</span><b id="rPlanKeep">$300</b></div>
+      <p class="res-note" id="rBetter" style="color:#fff;font-weight:600;margin-top:10px"></p>
       <div class="ga-box" id="gaBox">With Georgia's 3-year freeze, total savings could reach <b id="rGa3">$1,440</b>. You'd keep <b id="rGaKeep">$1,296</b>, because we only charge on year one.</div>
       <p class="res-note">Estimate for illustration only. Results are not guaranteed.</p>
       <a class="btn btn-gold" href="#signup" style="margin-top:8px;width:100%">Start My Free Appeal</a>
@@ -322,7 +552,7 @@ nav.main a.share-link,nav.main button.share-link{display:inline-flex;align-items
     <div class="card terms" id="terms" tabindex="0" aria-label="Property Tax Appeal Services Agreement">
       <div class="terms-head"><h3>Property Tax Appeal Services Agreement</h3><p>Contingency fee engagement &middot; Residential &amp; Commercial</p></div>
       <div class="terms-body">
-        <div class="summary-box"><b>In short:</b> $0 upfront. You pay 30% of your first-year tax savings only after your reduced value is final. No reduction, no fee.</div>
+        <div class="summary-box"><b>In short:</b> Choose one. <b>Pay Only If We Win:</b> $0 upfront; you pay 30% of your first-year tax savings only after your reduced value is final; no reduction, no fee. <b>Protection Plan:</b> a flat monthly fee covers every appeal, every year, and you keep 100% of your savings (Section 7).</div>
 
         <h4>1. Parties and Property</h4>
         <p>This Agreement is between <b>Property Tax Reports USA</b> ("Company"), Atlanta, Georgia, and the client named in the signature form ("Client"). If Client is a business entity, the person signing confirms they have authority to bind the entity that owns the Property. Additional properties may be added on a signed schedule and are billed separately under these terms.</p>
@@ -338,7 +568,8 @@ nav.main a.share-link,nav.main button.share-link{display:inline-flex;align-items
         </ol>
         <p>Client appoints Company as its authorized agent for these purposes and will sign any state agent-authorization form needed (for example, Texas Form 50-162 or a Georgia letter of authorization). Client authorizes Company to receive assessment notices and decisions on Client's behalf. Company decides the strategy, evidence, and whether to accept a settlement offer, and will inform Client before accepting a settlement. Appeals beyond the first-level board (superior court, district court, or binding arbitration) are not included unless agreed in a separate signed writing. <b>Company does not guarantee any result.</b></p>
 
-        <h4>3. Fee</h4>
+        <h4>3. Fee (Pay Only If We Win option)</h4>
+        <p>If Client selects the Protection Plan, Section 7 replaces this Section 3 and the invoice terms in Section 4 for the covered years.</p>
         <p><b>No upfront fee.</b> Client pays no retainer, filing fee, or appraisal fee to start. <b>Contingency fee: 30% of First-Year Tax Savings</b>, for residential and commercial properties. <b>No reduction, no fee.</b></p>
         <p><b>First-Year Tax Savings</b> means the decrease in the Property's ad valorem tax for the first tax year covered by this Agreement resulting from the reduction in value: taxable value before appeal, minus taxable value after Final Determination, multiplied by the total tax rate (millage) for that year. If that year's rate has not been set when Company invoices, the prior year's rate is used. Exemptions (such as homestead) are applied the same way to both values, so Client is never charged on savings from an exemption alone. The fee is based only on the first tax year, even if the reduced value carries into later years.</p>
         <p><b>Example:</b> taxable value $500,000 reduced to $440,000; tax rate 2.5%; First-Year Tax Savings $1,500; Company fee (30%) $450; Client keeps $1,050 in year one.</p>
@@ -359,6 +590,14 @@ nav.main a.share-link,nav.main button.share-link{display:inline-flex;align-items
         <p><b>Late payment.</b> Amounts unpaid 30 days after the invoice date accrue interest at 1.5% per month (18% per year), or the highest rate allowed by law if lower. <b>Collection costs.</b> Client pays reasonable collection costs, including agency fees, court costs, and reasonable attorneys' fees, to the extent allowed by law. <b>Future representation.</b> Company may decline future work while any fee is unpaid. <b>Personal guaranty (commercial only).</b> If Client is a business entity and a Guarantor signs, the Guarantor personally guarantees payment.</p>
         <p><b>Limitation of liability.</b> Company's total liability is limited to fees Client has paid for the Property. Company is not responsible for missed deadlines caused by Client's late delivery of notices or information. <b>Confidentiality.</b> Company keeps Client's financial information confidential, except as needed to present evidence in the appeal. <b>Licensing.</b> Appraisal work is performed by a licensed appraiser; in Texas, Company or its agent is registered as a property tax consultant with the Texas Department of Licensing and Regulation.</p>
         <p><b>Governing law.</b> Georgia law governs, except where the law of the state where the Property is located requires otherwise. Disputes will be heard in the courts of Fulton County, Georgia. <b>Entire agreement.</b> This is the full agreement; changes must be in writing and signed by both parties. If any part is unenforceable, the rest remains in effect. Electronic signatures are valid.</p>
+
+        <h4>7. Protection Plan (if selected)</h4>
+        <p><b>What it is.</b> The Protection Plan is a service membership, not insurance. For a flat monthly fee, Company reviews each new assessment notice for the Property every year, files an appeal whenever Company believes the value is too high, prepares valuation evidence, represents Client at the first-level board or hearing officer, checks homestead and exemptions, and tracks deadlines. <b>No fee is charged on savings</b>; Client keeps 100% of any reduction.</p>
+        <p><b>Monthly fees.</b> Home $15; Home Plus (homes over $750,000, or 2&ndash;4 rental homes) $29; Commercial (under $3 million assessed) $149; Commercial Pro ($3&ndash;10 million, including apartments, hotels, and self storage) $299; Portfolio (over $10 million or 5+ properties) by written quote. Each additional property on the same account is 20% off. An annual payment option equals 10 months' fees.</p>
+        <p><b>Billing.</b> Fees are charged monthly to the card or bank account Client saves through Company's secure payment link, starting on the date Company confirms in writing. Client receives a receipt for each charge.</p>
+        <p><b>Term and cancellation.</b> The first 12 months are a minimum term; after that the plan continues month to month and Client may cancel with 30 days' written notice. If Client cancels during the first 12 months after Company has filed an appeal, Client owes the lower of (a) the remaining monthly fees in the first 12 months or (b) 30% of that year's First-Year Tax Savings.</p>
+        <p><b>Timing.</b> To be covered for a given tax year, Client must enroll at least 21 days before the county's appeal deadline for that year. Client may switch between the Protection Plan and the Pay Only If We Win option for the next tax year.</p>
+        <p><b>No guarantee.</b> The monthly fee pays for Company's services, not a result. Fees are owed whether or not the value is reduced. Company does not pay any tax, increase, or penalty on Client's behalf. Superior court appeals, binding arbitration, and narrative appraisals for court use are quoted separately.</p>
       </div>
     </div>
 
@@ -367,8 +606,8 @@ nav.main a.share-link,nav.main button.share-link{display:inline-flex;align-items
         <input type="hidden" name="form-name" value="service-agreement">
         <input type="hidden" name="subject" value="New signed service agreement (%{submissionId})">
         <p class="hidden"><label>Leave blank: <input name="bot-field"></label></p>
-        <input type="hidden" name="fee_terms" value="30% of first-year tax savings, $0 upfront, due 30 days after Final Determination invoice">
-        <input type="hidden" name="agreement_version" value="2026-10 Contingency v1">
+        <input type="hidden" name="fee_terms" id="feeTerms" value="30% of first-year tax savings, $0 upfront, due 30 days after Final Determination invoice">
+        <input type="hidden" name="agreement_version" value="2026-10 v2 (Pay Only If We Win + Protection Plan)">
         <input type="hidden" name="signed_at" id="signedAt">
 
         <h3>Your Details</h3>
@@ -399,8 +638,24 @@ nav.main a.share-link,nav.main button.share-link{display:inline-flex;align-items
           <div class="field"><label for="f_val">Current appraised value</label><input type="text" id="f_val" name="current_value" inputmode="numeric" placeholder="From your notice"></div>
         </div>
 
+        <h3 style="margin-top:8px">How Would You Like to Pay?</h3>
+        <div class="pay-choice" role="radiogroup" aria-label="Payment option">
+          <label class="pc"><input type="radio" name="payment_option" value="Pay Only If We Win (30%)" id="po_cont" checked><span><b>Pay Only If We Win</b><small>30% of first-year savings. $0 upfront, $0 if no reduction.</small></span></label>
+          <label class="pc"><input type="radio" name="payment_option" value="Protection Plan" id="po_plan"><span><b>Protection Plan</b><small>Flat monthly fee. Every appeal, every year. Keep 100% of savings.</small></span></label>
+        </div>
+        <div class="field hidden" id="planTierWrap"><label for="f_tier">Protection Plan level *</label>
+          <select id="f_tier" name="plan_tier">
+            <option value="">Select</option>
+            <option value="Home ($15/month)">Home: $15/month</option>
+            <option value="Home Plus ($29/month)">Home Plus: $29/month (homes over $750K, or 2&ndash;4 rentals)</option>
+            <option value="Commercial ($149/month)">Commercial: $149/month (under $3M)</option>
+            <option value="Commercial Pro ($299/month)">Commercial Pro: $299/month ($3&ndash;10M)</option>
+            <option value="Portfolio (custom quote)">Portfolio: custom quote (over $10M or 5+ properties)</option>
+          </select>
+          <small style="display:block;color:var(--muted);font-size:12px;margin-top:4px">12-month first year, then month to month. Billing starts on the date we confirm in writing.</small></div>
+
         <h3 style="margin-top:8px">Sign</h3>
-        <label class="check"><input type="checkbox" id="c1" name="agree_terms" value="yes" required><span>I have read and agree to the Property Tax Appeal Services Agreement, including the <b>30% contingency fee</b> and payment within 30 days of the Final Determination invoice.</span></label>
+        <label class="check"><input type="checkbox" id="c1" name="agree_terms" value="yes" required><span id="c1Text">I have read and agree to the Property Tax Appeal Services Agreement, including the <b>30% contingency fee</b> and payment within 30 days of the Final Determination invoice.</span></label>
         <label class="check"><input type="checkbox" id="c2" name="agree_agent" value="yes" required><span>I appoint Property Tax Reports USA as my authorized agent and will sign any state agent-authorization form needed.</span></label>
         <label class="check"><input type="checkbox" id="c3" name="agree_payment" value="yes" required><span>I will save a card or bank account through the secure payment link. I understand <b>nothing is charged today</b>.</span></label>
         <label class="check"><input type="checkbox" id="c4" name="agree_esign" value="yes" required><span>I agree to sign electronically, and my typed name below is my legal signature.</span></label>
@@ -436,13 +691,13 @@ nav.main a.share-link,nav.main button.share-link{display:inline-flex;align-items
 <!-- FAQ -->
 <section style="background:#fff"><div class="wrap" style="max-width:820px">
   <p class="eyebrow center">Questions</p>
-  <h2 class="center">Pricing Questions</h2>
+  <h2 class="center">Payment Questions</h2>
   <div style="margin-top:24px">
-    <details><summary>When do I pay?</summary><p>Only after the county makes your lower value official. We'll send an invoice showing your old value, new value, and savings. Payment is due within 30 days.</p></details>
-    <details><summary>Why do you ask for a card?</summary><p>It lets you start with no upfront payment and makes paying easy later. Nothing is charged when you sign up. You'll get an invoice first and a receipt for any payment.</p></details>
-    <details><summary>What if my value isn't lowered?</summary><p>You pay nothing. No filing fees, no appraisal fees, no charge for our time.</p></details>
-    <details><summary>How are my savings calculated?</summary><p>We take the drop in your property's taxable value and multiply it by your local tax rate for that year. Your fee is 30% of that first-year amount.</p></details>
-    <details><summary>Is the fee different for commercial properties?</summary><p>No. Homes, apartments, offices, retail, hotels, self storage, and other commercial properties all use the same 30% fee.</p></details>
+    <details><summary>When do I pay?</summary><p><b>Pay Only If We Win:</b> only after the county makes your lower value official. We'll send an invoice showing your old value, new value, and savings, due within 30 days. <b>Protection Plan:</b> a flat monthly charge to your saved card or bank account, starting on the date we confirm with you.</p></details>
+    <details><summary>Why do you ask for a card?</summary><p>It lets you start with no upfront payment and makes paying easy later. Nothing is charged when you sign up. Pay Only If We Win clients get an invoice first; Protection Plan members get a receipt every month.</p></details>
+    <details><summary>Which option should I choose?</summary><p>Use the savings calculator above. As a rule of thumb, the Protection Plan usually costs less once your yearly savings are above about $600 for a home, $6,000 for Commercial, or $12,000 for Commercial Pro. Not sure? Call us and we'll recommend the cheaper option for free.</p></details>
+    <details><summary>How are my savings calculated?</summary><p>We take the drop in your property's taxable value and multiply it by your local tax rate for that year. With Pay Only If We Win, your fee is 30% of that first-year amount. With the Protection Plan, you keep all of it.</p></details>
+    <details><summary>Can I switch options later?</summary><p>Yes. You can move between Pay Only If We Win and the Protection Plan for the next tax year. Protection Plan members have a 12-month first year, then it's month to month.</p></details>
     <details><summary>I already received an invoice. How do I pay it?</summary><p>Use the secure link in your invoice text or email, or <a href="https://www.propertytaxreportsusa.com/pay-online/" target="_blank" rel="noopener">pay on our website</a>.</p></details>
   </div>
 </div></section>
@@ -483,7 +738,7 @@ nav.main a.share-link,nav.main button.share-link{display:inline-flex;align-items
 
 <footer><div class="wrap">
   <p>&copy; <span id="yr"></span> Property Tax Reports USA &middot; 8735 Dunwoody Place Ste. N, Atlanta, GA 30350 &middot; <a href="tel:+14044759765">(404) 475-9765</a></p>
-  <p>Examples and calculator results are for illustration only and are not a guarantee of savings. Serving Georgia, Florida, and Texas.</p>
+  <p>Examples and calculator results are for illustration only and are not a guarantee of savings. The Protection Plan is a service membership, not insurance. Serving Georgia, Florida, and Texas.</p>
 </div></footer>
 
 <!-- Signed copy for print -->
@@ -547,6 +802,15 @@ function calc() {
   $("#gaBox").style.display = st === "GA" ? "block" : "none";
   $("#rGa3").textContent = fmt(save * 3);
   $("#rGaKeep").textContent = fmt(save * 3 - fee);
+  // Protection Plan comparison (home tiers; commercial owners see the price cards)
+  const plan = v > 750000 ? { name: "Home Plus", yr: 348 } : { name: "Home", yr: 180 };
+  $("#rPlanName").textContent = plan.name;
+  $("#rPlan").textContent = fmt(plan.yr) + "/yr";
+  $("#rPlanKeep").textContent = fmt(save - plan.yr);
+  const diff = Math.round(Math.abs(fee - plan.yr));
+  $("#rBetter").textContent = diff < 5 ? "Both options cost about the same here."
+    : fee > plan.yr ? "The Protection Plan would save you about " + fmt(diff) + " more this year."
+    : "Pay Only If We Win would save you about " + fmt(diff) + " more this year.";
 }
 document.querySelectorAll('input[name="cstate"]').forEach(r => r.addEventListener("change", e => {
   $("#crate").value = rates[e.target.value];
@@ -556,6 +820,27 @@ document.querySelectorAll('input[name="cstate"]').forEach(r => r.addEventListene
 ["#cval", "#cred", "#crate"].forEach(id => $(id).addEventListener("input", calc));
 $("#cval").addEventListener("blur", e => { const n = num(e.target.value); if (n) e.target.value = n.toLocaleString("en-US"); });
 calc();
+
+/* payment option (Pay Only If We Win vs Protection Plan) */
+const C1_CONT = "I have read and agree to the Property Tax Appeal Services Agreement, including the <b>30% contingency fee</b> and payment within 30 days of the Final Determination invoice.";
+const C1_PLAN = "I have read and agree to the Property Tax Appeal Services Agreement, including the <b>Protection Plan monthly fee</b> and terms in Section 7 (12-month first year; fee owed whether or not my value is lowered).";
+function setPayOption(opt) {
+  const plan = opt === "plan";
+  (plan ? $("#po_plan") : $("#po_cont")).checked = true;
+  $("#planTierWrap").classList.toggle("hidden", !plan);
+  if (plan) $("#f_tier").setAttribute("required", ""); else { $("#f_tier").removeAttribute("required"); $("#f_tier").value = ""; }
+  $("#c1Text").innerHTML = plan ? C1_PLAN : C1_CONT;
+  updateFeeTerms();
+}
+function updateFeeTerms() {
+  $("#feeTerms").value = $("#po_plan").checked
+    ? "Protection Plan: " + ($("#f_tier").value || "level not selected") + "; no fee on savings; 12-month first year, then month to month; billing starts on date confirmed in writing"
+    : "30% of first-year tax savings, $0 upfront, due 30 days after Final Determination invoice";
+}
+$("#po_cont").addEventListener("change", () => setPayOption("contingency"));
+$("#po_plan").addEventListener("change", () => setPayOption("plan"));
+$("#f_tier").addEventListener("change", updateFeeTerms);
+document.querySelectorAll("[data-choose]").forEach(a => a.addEventListener("click", () => setPayOption(a.dataset.choose)));
 
 /* agreement form */
 const today = new Date();
@@ -601,13 +886,23 @@ function showSigned(f) {
   $("#okBox").classList.remove("hidden");
   $("#okAddr").textContent = d.property_address;
   signedData = d;
+  const isPlan = d.payment_option === "Protection Plan";
+  $("#cardMsg").textContent = isPlan
+    ? "Add your card or bank account on Stripe's secure page for your monthly Protection Plan payments. Nothing is charged today; billing starts on the date we confirm with you."
+    : "Add your card or bank account on Stripe's secure page. Nothing is charged today; it's only used after your lower value is final and you get an invoice.";
+  const feeRow = isPlan
+    ? ["Fee", "Protection Plan: " + (d.plan_tier || "") + "; no fee on savings; 12-month first year, then month to month"]
+    : ["Fee", "Pay Only If We Win: 30% of First-Year Tax Savings; $0 upfront; no reduction, no fee"];
+  const payRow = isPlan
+    ? ["Payment", "Monthly to the saved payment method, starting on the date confirmed in writing; nothing charged at signing"]
+    : ["Payment", "Due within 30 days of the Final Determination invoice; payment method on file, nothing charged at signing"];
   $("#signedCopy").innerHTML =
     "<h2 style='margin:0;color:#0c2340'>Property Tax Reports USA</h2><p style='margin:2px 0 18px;color:#555'>Property Tax Appeal Services Agreement &middot; Signed copy</p>" +
     "<table style='border-collapse:collapse;width:100%;font-size:14px'>" +
     [["Client", d.client_name], ["Entity", d.entity_name], ["Email", d.email], ["Phone", d.phone], ["Mailing address", d.mailing_address],
      ["Property address", d.property_address], ["County / State", d.county + ", " + d.state], ["Parcel ID", d.parcel_id],
      ["Property type", d.property_type], ["Tax year(s)", d.tax_years], ["Current value", d.current_value],
-     ["Fee", "30% of First-Year Tax Savings; $0 upfront; no reduction, no fee"], ["Payment", "Due within 30 days of the Final Determination invoice; payment method on file, nothing charged at signing"],
+     ["Payment option", d.payment_option], feeRow, payRow,
      ["Signed (typed)", d.signature], ["Title", d.signer_title], ["Date", d.sign_date], ["Timestamp", d.signed_at], ["Agreement version", d.agreement_version]]
       .map(r => "<tr><td style='border:1px solid #ccc;padding:6px 8px;background:#f3f5f8;width:32%'><b>" + r[0] + "</b></td><td style='border:1px solid #ccc;padding:6px 8px'>" + esc(r[1]) + "</td></tr>").join("") +
     "</table><div style='margin-top:20px;font-size:12.5px;line-height:1.5'>" + $(".terms-body").innerHTML + "</div>";
@@ -628,7 +923,8 @@ $("#cardBtn").addEventListener("click", async () => {
         entity_name: signedData.entity_name, property_address: signedData.property_address,
         county: signedData.county, state: signedData.state, parcel_id: signedData.parcel_id,
         property_type: signedData.property_type, tax_years: signedData.tax_years,
-        agreement_version: signedData.agreement_version, signed_at: signedData.signed_at
+        agreement_version: signedData.agreement_version, signed_at: signedData.signed_at,
+        payment_option: signedData.payment_option, plan_tier: signedData.plan_tier
       })
     });
     const j = await r.json().catch(() => ({}));

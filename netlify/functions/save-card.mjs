@@ -68,7 +68,10 @@ export default async (req) => {
     entity_name: clean(body.entity_name, 120),
     agreement_version: clean(body.agreement_version, 60),
     signed_at: clean(body.signed_at, 40),
+    payment_option: clean(body.payment_option, 60),
+    plan_tier: clean(body.plan_tier, 60),
   };
+  const isPlan = meta.payment_option === "Protection Plan";
 
   try {
     // 1. Create the Stripe customer record (shows up under Customers in your dashboard).
@@ -84,10 +87,11 @@ export default async (req) => {
       customer: customer.id,
       success_url: `${origin}/?card=saved#signup`,
       cancel_url: `${origin}/?card=cancel#signup`,
-      "custom_text[submit][message]":
-        "Nothing is charged today. Per your agreement, your saved method is used only after your reduced value is final and you receive an invoice.",
+      "custom_text[submit][message]": isPlan
+        ? "Nothing is charged today. Per your agreement, your saved method is used for your monthly Protection Plan payments, starting on the date we confirm with you."
+        : "Nothing is charged today. Per your agreement, your saved method is used only after your reduced value is final and you receive an invoice.",
       "setup_intent_data[metadata][property_address]": meta.property_address,
-      "setup_intent_data[metadata][purpose]": "PTR contingency fee on file",
+      "setup_intent_data[metadata][purpose]": isPlan ? `PTR Protection Plan: ${meta.plan_tier}`.slice(0, 450) : "PTR contingency fee on file",
     };
 
     let session;
